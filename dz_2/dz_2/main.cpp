@@ -176,7 +176,7 @@ public:
 	DoubleMatrix operator/(const DoubleMatrix& obj) const
 	{
 		DoubleMatrix t_mat(obj.col, row);
-		if (obj.is_square() && obj.determeneit() != 0 && col == obj.row)
+		if (obj.is_square() && obj.determinant() != 0 && col == obj.row)
 		{
 			t_mat = *this * obj.reversMatrix();
 			return t_mat;
@@ -189,7 +189,7 @@ public:
 
 	DoubleMatrix& operator/=(const DoubleMatrix& obj)
 	{
-		if (obj.is_square() && obj.determeneit() != 0 && col == obj.row)
+		if (obj.is_square() && obj.determinant() != 0 && col == obj.row)
 			*this *= obj.reversMatrix();
 		else
 			std::cout << "Matrix size are not equal. Returned to the original matrix!" << std::endl;
@@ -396,7 +396,7 @@ public:
 
 	DoubleMatrix reversMatrix() const
 	{
-		double determ = this->determeneit();
+		double determ = this->determinant();
 		if (!is_square() || determ == 0) {
 			std::cout << "Matrix size are not equal. Returned to the original matrix!" << std::endl;
 			return *this;
@@ -420,7 +420,7 @@ public:
 						minor.arr[k][i] = arr[k][i];
 				}
 			}
-			rev_mat.arr[j / row][j % row] = minor.determeneit() * pow(-1, (j / row + j % row));
+			rev_mat.arr[j / row][j % row] = minor.determinant() * pow(-1, (j / row + j % row));
 		}
 		return (rev_mat.transpositionMatrix() * (1 / determ));
 	}
@@ -438,7 +438,7 @@ public:
 		return tranM;
 	}
 
-	double determeneit() const
+	double determinant() const
 	{
 		double determ = 0;
 		if (!this->is_square())
@@ -464,7 +464,7 @@ public:
 						minor.arr[k][i] = arr[k][i];
 				}
 			}
-			determ += pow(-1, col - 1 + j) * arr[col - 1][j] * minor.determeneit();
+			determ += pow(-1, col - 1 + j) * arr[col - 1][j] * minor.determinant();
 		}
 		return determ;
 	}
@@ -530,10 +530,10 @@ std::istream& operator>>(std::istream& is, DoubleMatrix& obj)
 void menu()
 {
 	int par = 0, col = 0, row = 0;
-	std::cout << "Enter size matrix ¹1: " << std::endl;
+	std::cout << "Enter size matrix 1: " << std::endl;
 	std::cin >> row >> col;
 	DoubleMatrix mat_1(row, col);
-	std::cout << "Enter size matrix ¹2: " << std::endl;
+	std::cout << "Enter size matrix 2: " << std::endl;
 	std::cin >> row >> col;
 	DoubleMatrix mat_2(row, col);
 
@@ -550,9 +550,9 @@ void menu()
 	}
 	case 2:
 	{
-		std::cout << "Creating matrices ¹1: " << std::endl;
+		std::cout << "Creating matrices 1: " << std::endl;
 		std::cin >> mat_1;
-		std::cout << "Creating matrices ¹2: " << std::endl;
+		std::cout << "Creating matrices 2: " << std::endl;
 		std::cin >> mat_2;
 		break;
 	}
@@ -567,9 +567,9 @@ void menu()
 	bool sw = true;
 	while (sw)
 	{
-		std::cout << "Matrix ¹1:" << std::endl;
+		std::cout << "Matrix 1:" << std::endl;
 		std::cout << mat_1 << std::endl;
-		std::cout << "Matrix ¹2:" << std::endl;
+		std::cout << "Matrix 2:" << std::endl;
 		std::cout << mat_2 << std::endl;
 		std::cout << "Select the operation:" << std::endl;
 		std::cout << "1. + " << std::endl;
@@ -698,7 +698,7 @@ void menu()
 		case 16:
 		{
 			std::cout << "Result:" << std::endl;
-			std::cout << mat_1.determeneit() << std::endl;
+			std::cout << mat_1.determinant() << std::endl;
 			break;
 		}
 		case 17:
