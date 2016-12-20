@@ -97,6 +97,7 @@ public:
 	explicit CoopPtr(T* obj)
 		:ptr{ obj }, count{ new int(1) }
 	{}
+
 	CoopPtr(const CoopPtr& obj)
 		:ptr{ obj.ptr }, count{ obj.count }
 	{
@@ -113,6 +114,7 @@ public:
 		}
 		return *this;
 	}
+
 	~CoopPtr()
 	{
 		if (*count == 1) {
@@ -128,7 +130,6 @@ template<class T>
 std::ostream& operator<<(std::ostream& os, const CoopPtr<T>& obj)
 {
 	os << " Value: " << *obj.ptr << " Count: " << *obj.count;
-
 	return os;
 }
 
@@ -136,11 +137,14 @@ class Res_1
 {
 private:
 	UniquePtr<int> ptr;
+
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Res_1& obj);
+
 	Res_1()
 		: ptr(nullptr)
 	{}
+
 	Res_1(int num)
 		: ptr(new int(num))
 	{}
@@ -149,7 +153,6 @@ public:
 std::ostream& operator<<(std::ostream& os, const Res_1& obj)
 {
 	os << obj.ptr;
-
 	return os;
 }
 
@@ -157,11 +160,14 @@ class Res_2
 {
 private:
 	AssignPtr<int> ptr;
+
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Res_2& obj);
+
 	Res_2()
 		: ptr(nullptr)
 	{}
+
 	Res_2(int num)
 		: ptr(new int(num))
 	{}
@@ -170,7 +176,6 @@ public:
 std::ostream& operator<<(std::ostream& os, const Res_2& obj)
 {
 	os << obj.ptr;
-
 	return os;
 }
 
@@ -178,11 +183,14 @@ class Res_3
 {
 private:
 	CoopPtr<int> ptr;
+
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Res_3& obj);
+
 	Res_3()
 		: ptr(nullptr)
 	{}
+
 	Res_3(int num)
 		: ptr(new int(num))
 	{}
@@ -191,7 +199,6 @@ public:
 std::ostream& operator<<(std::ostream& os, const Res_3& obj)
 {
 	os << obj.ptr;
-
 	return os;
 }
 
