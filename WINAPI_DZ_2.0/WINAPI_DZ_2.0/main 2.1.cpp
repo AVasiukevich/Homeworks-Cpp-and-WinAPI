@@ -16,17 +16,17 @@ INT WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPTSTR lpszCmdLine, i
 	do
 	{
 		int count = 0;
-		MessageBox(0, TEXT("Загадайте число в диапазоне от 1 до 100!"), TEXT("Начало!"), MB_OK | MB_ICONEXCLAMATION);
+		MessageBox(0, TEXT("Remember the numbers ranging from 1 to 100!"), TEXT("Start!"), MB_OK | MB_ICONEXCLAMATION);
 		do
 		{
-			tstring number = TEXT("Вы загадали число: ") + to_tstring(rand() % 101);
-			repeat = MessageBox(0, number.c_str(), TEXT("Угадали?"), MB_YESNO | MB_ICONQUESTION);
+			tstring number = TEXT("Number: ") + to_tstring(rand() % 101);
+			repeat = MessageBox(0, number.c_str(), TEXT("Guessed?"), MB_YESNO | MB_ICONQUESTION);
 			++count;
 		} while (repeat == 7);
-		tstring count_str = TEXT("Число попыток: ") + to_tstring(count);
-		MessageBox(0, count_str.c_str(), TEXT("Число попыток!"), MB_OK | MB_ICONINFORMATION);
+		tstring count_str = TEXT("Number of attempts: ") + to_tstring(count);
+		MessageBox(0, count_str.c_str(), TEXT("Number of attempts!"), MB_OK | MB_ICONINFORMATION);
 
-		repeat = MessageBox(0, TEXT("Хотите сыграть еще раз?"), TEXT("Повторим?"), MB_YESNO | MB_ICONQUESTION);
+		repeat = MessageBox(0, TEXT("Want to play again?"), TEXT("Repeat?"), MB_YESNO | MB_ICONQUESTION);
 	} while (repeat == 6);
 
 	return 0;
